@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Twitter Feeds</title>
+	<link rel="stylesheet" href="/static/style.css" type="text/css" charset="utf-8" />
+</head>
+<body>
+<div id="container">
+	<div id="menu">
+	</div>
+	<div id="header">
+		<div class="wallpaper">
+		<center><a href="index.html"><img src="/static/img/twitter-banner.png" width=804px height=220px alt="logo" border="0" /></a></center>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div id="middle"></div>
+	<div id="middle2"></div>
+	<div id="content">
+		<div id="left">
+			<div id="monitor">
+				<div id="twitter-feed"></div>
+			</div>
+		</div>
+		<div id="right">
+			<div id="searchbar">
+				 
+				<div id="create-search">
+					<h1>Feeds</h1>
+					<div id="searchform">
+						<input id="search-query" type="text" />
+						<button id="submit-search">Search</button>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+	<div id="footer">
+		<p>Twitter Search &copy Bandilla, Libiran, Loon, Macalindol | BSCoE V-5</p>
+		
+	</div>
+
+</div>
+	
+	<script src="/static/lib/jquery.js"></script>
+	<script src="/static/lib/underscore.js"></script>
+    <script src="/static/lib/backbone.js"></script>
+    <script src="/static/lib/mustache.js"></script>
+    <script src="/static/app.js"></script>
+
+	<script type="text/javascript">
+	(function ($) {
+		// Create our models
+		var query = new TwitterSearch();
+		
+		// Add views
+		var createSearchView = new CreateSearchView({
+			el: $("#create-search"),
+			model: query
+		});
+		
+		var tweetList = new TweetListView({
+			el: $("#twitter-feed"),
+			collection: query.displayedTweets
+		});
+		tweetList.render();
+	})(jQuery);
+    </script>
+	
+</body>
+</html>
